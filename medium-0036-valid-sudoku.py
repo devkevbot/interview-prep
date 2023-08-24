@@ -12,7 +12,7 @@ class Solution:
 
         cols = collections.defaultdict(set)
         rows = collections.defaultdict(set)
-        # The key will is (row // 3, col // 3)
+        # The key is (row // 3, col // 3)
         squares = collections.defaultdict(set)
 
         for r in range(BOARD_SIZE):
