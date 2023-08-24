@@ -42,9 +42,6 @@ class Solution:
         Time: O(n), where n is the number of nodes in tree
         Space: O(h), where h is the height of the tree
         """
-        if root is None:
-            return True
-
         return self.helper(root)[1]
 
     def helper(self, root: Optional[TreeNode]):
