@@ -23,7 +23,7 @@ class Solution:
         Time: O(n)
         Space: O(n)
         """
-        # Create list which contains both the given numbers and the the nubmers which should be present in the range.
+        # Create list which contains both the given numbers and the numbers which should be present in the range.
         # Example [3, 0, 1] + [0, 1, 2, 3]
         all_numbers = nums + [i for i in range(len(nums) + 1)]
 
