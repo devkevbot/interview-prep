@@ -10,21 +10,20 @@ class Solution:
 
         stack = []
 
-        for symbol in tokens:
-            if symbol == "+":
-                first, second = stack.pop(), stack.pop()
-                stack.append(second + first)
-            elif symbol == "-":
-                first, second = stack.pop(), stack.pop()
-                stack.append(second - first)
-            elif symbol == "*":
-                first, second = stack.pop(), stack.pop()
+        for token in tokens:
+            if token == "+":
+                second, first = stack.pop(), stack.pop()
+                stack.append(first + second)
+            elif token == "-":
+                second, first = stack.pop(), stack.pop()
+                stack.append(first - second)
+            elif token == "*":
+                second, first = stack.pop(), stack.pop()
                 stack.append(first * second)
-            elif symbol == "/":
-                first, second = stack.pop(), stack.pop()
-                stack.append(int(second / first))
+            elif token == "/":
+                second, first = stack.pop(), stack.pop()
+                stack.append(int(first / second))
             else:
-                totally_an_integer = int(symbol)
-                stack.append(totally_an_integer)
+                stack.append(int(token))
 
         return stack.pop()
