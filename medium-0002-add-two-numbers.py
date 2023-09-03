@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -9,9 +6,8 @@ class ListNode:
 
 
 class Solution:
-    def addTwoNumbers(
-        self, l1: Optional[ListNode], l2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    @staticmethod
+    def add_two_numbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
         """
         Time: O(max(n, m)), where n is length of l1 and m the length of l2
         Space: O(max(n, m))
