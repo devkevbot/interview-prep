@@ -1,5 +1,6 @@
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+    @staticmethod
+    def length_of_longest_substring(s: str) -> int:
         """
         Time: O(n), where is length of the input string
         Space: O(n)
@@ -7,13 +8,13 @@ class Solution:
 
         seen = set()
         longest = 0
-        l = 0
+        left = 0
 
-        for r in range(len(s)):
-            while s[r] in seen:
-                seen.remove(s[l])
-                l += 1
-            seen.add(s[r])
-            longest = max(longest, r - l + 1)
+        for right in range(len(s)):
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
+            seen.add(s[right])
+            longest = max(longest, right - left + 1)
 
         return longest
