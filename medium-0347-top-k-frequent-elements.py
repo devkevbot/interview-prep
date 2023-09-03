@@ -1,11 +1,10 @@
 import collections
 import heapq
-from typing import List
 
 
-# Heap
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+class HeapSolution:
+    @staticmethod
+    def top_k_frequent(nums: list[int], k: int) -> list[int]:
         """
         Time: O(nlogk), where n is the length of the input
         Space: O(n + k)
@@ -24,9 +23,9 @@ class Solution:
         return heapq.nlargest(k, count.keys(), key=count.get)
 
 
-# Bucket sort
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+class BucketSortSolution:
+    @staticmethod
+    def top_k_frequent(nums: list[int], k: int) -> list[int]:
         """
         Time: O(n), where n is the length of the input
         Space: O(n + k)
