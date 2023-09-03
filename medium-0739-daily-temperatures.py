@@ -1,34 +1,33 @@
-from typing import List
-
-
-# Brute-force approach
-class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+class BruteForceSolution:
+    @staticmethod
+    def daily_temperatures(temperatures: list[int]) -> list[int]:
         """
         Time: O(n^2), where n is the number of temperatures
         Space: O(n)
         """
         res = [0] * len(temperatures)
 
-        l = 0
-        r = 0
+        left = 0
+        right = 0
 
-        while l < len(temperatures):
-            while r < len(temperatures) and temperatures[l] >= temperatures[r]:
-                r += 1
+        while left < len(temperatures):
+            while (
+                right < len(temperatures) and temperatures[left] >= temperatures[right]
+            ):
+                right += 1
 
-            if r < len(temperatures):
-                res[l] = r - l
+            if right < len(temperatures):
+                res[left] = right - left
 
-            l += 1
-            r = l + 1
+            left += 1
+            right = left + 1
 
         return res
 
 
-# Stack approach
-class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+class StackSolution:
+    @staticmethod
+    def daily_temperatures(temperatures: list[int]) -> list[int]:
         """
         Time: O(n), where n is the number of temperatures
         Space: O(n)
