@@ -1,9 +1,6 @@
-from typing import List
-
-
-# Iterative approach
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+class IterativeSolution:
+    @staticmethod
+    def generate_parenthesis(n: int) -> list[str]:
         combs = ["()"]
 
         if n == 1:
@@ -19,9 +16,9 @@ class Solution:
         return combs
 
 
-# Recursive approach with stack
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+class StackRecursiveSolution:
+    @staticmethod
+    def generate_parenthesis(n: int) -> list[str]:
         """
         Time: O(?), https://en.wikipedia.org/wiki/Catalan_number lol
                     https://leetcode.com/problems/generate-parentheses/solutions/10099/time-complexity-to-generate-all-combinations-of-well-formed-parentheses/
@@ -54,9 +51,9 @@ class Solution:
         return res
 
 
-# Recursive approach with string concatenation
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+class StringRecursiveSolution:
+    @staticmethod
+    def generate_parenthesis(n: int) -> list[str]:
         res = []
 
         def backtrack(open_n, closed_n, path):
