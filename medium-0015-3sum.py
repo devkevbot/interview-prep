@@ -1,45 +1,33 @@
-from typing import List
-
-
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    @staticmethod
+    def three_sum(nums: list[int]) -> list[list[int]]:
         """
-        Time: O(n^2), where n is the length of the input
+        Time: O(n^2)
         Space: O(n)
         """
-        sol = set()
-
-        # O(nlogn)
+        triplets = set()
         nums.sort()
 
         # O(n) iterations
-        for xi in range(len(nums) - 2):
-            # Optimization: skip already seen 'x' values
-            if xi > 0 and nums[xi] == nums[xi - 1]:
+        for left in range(len(nums) - 2):
+            # Optimization: skip already seen 'left' values
+            if left > 0 and nums[left] == nums[left - 1]:
                 continue
 
-            x = nums[xi]
-
-            yi = xi + 1
-            y = nums[yi]
-
-            zi = len(nums) - 1
-            z = nums[zi]
+            mid = left + 1
+            right = len(nums) - 1
 
             # O(n) iterations
-            while yi < zi:
-                if x + y + z == 0 and xi != yi and yi != zi:
-                    sol.add((x, y, z))
-                if x + y + z < 0:
-                    yi += 1
-                    y = nums[yi]
-
-                    # Optimization: skip already seen 'y' values
-                    while yi < zi and nums[yi] == nums[yi - 1]:
-                        yi += 1
-                        y = nums[yi]
+            while mid < right:
+                total = nums[left] + nums[mid] + nums[right]
+                if total == 0 and left != mid and mid != right:
+                    triplets.add((nums[left], nums[mid], nums[right]))
+                if total < 0:
+                    mid += 1
+                    # Optimization: skip already seen 'mid' values
+                    while mid < right and nums[mid] == nums[mid - 1]:
+                        mid += 1
                 else:
-                    zi -= 1
-                    z = nums[zi]
+                    right -= 1
 
-        return list(sol)
+        return triplets
