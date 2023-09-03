@@ -6,9 +6,8 @@ class TreeNode:
         self.right = None
 
 
-# Recursive solution
-class Solution:
-    def lowestCommonAncestor(
+class RecursiveSolution:
+    def lowest_common_ancestor(
         self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
     ) -> "TreeNode":
         """
@@ -16,16 +15,16 @@ class Solution:
         Space: O(h)
         """
         if p.val < root.val and q.val < root.val:
-            return self.lowestCommonAncestor(root.left, p, q)
+            return self.lowest_common_ancestor(root.left, p, q)
         if p.val > root.val and q.val > root.val:
-            return self.lowestCommonAncestor(root.right, p, q)
+            return self.lowest_common_ancestor(root.right, p, q)
         return root
 
 
-# Iterative solution
-class Solution:
-    def lowestCommonAncestor(
-        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+class IterativeSolution:
+    @staticmethod
+    def lowest_common_ancestor(
+        root: "TreeNode", p: "TreeNode", q: "TreeNode"
     ) -> "TreeNode":
         """
         Time: O(h), where h is the height of tree
