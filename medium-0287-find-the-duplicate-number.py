@@ -1,30 +1,33 @@
-from typing import List
-
-
-# My approach: Bitwise XOR
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
+class NegativeMarkingSolution:
+    @staticmethod
+    def find_duplicate(nums: list[int]) -> int:
         """
-        Time: O(n), where n is the length of nums
+        Time: O(n), where n is the length of num
         Space: O(1)
         """
-        seen = 0
+        duplicate = -1
 
         for num in nums:
-            # XOR the bit corresponding to the value of num
-            seen ^= 1 << num
+            curr = abs(num)
+            # The value at an index will be turned negative once it has been visited once before.
+            # Therefore, if a negative value is encountered, the duplicate has been found.
+            if nums[curr] < 0:
+                duplicate = curr
+                break
+            nums[curr] = -nums[curr]
 
-            # If the bit that was set is now 0, that means it was previoussy 1.
-            # Therefore, the duplcate number has been found.
-            if seen & (1 << num) == 0:
-                return num
+        # Restore numbers if modifying the input is not allowed
+        for i in range(len(nums)):
+            nums[i] = abs(nums[i])
+
+        return duplicate
 
 
-# Approach: Sorting
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
+class SortingSolution:
+    @staticmethod
+    def find_duplicate(nums: list[int]) -> int:
         """
-        Time: O(nlogn), where n is the length of nums
+        Time: O(n * log n), where n is the length of nums
         Space: O(n)
         """
         nums.sort()
@@ -33,9 +36,9 @@ class Solution:
                 return nums[i]
 
 
-# Approach: Set
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
+class SetSolution:
+    @staticmethod
+    def find_duplicate(nums: list[int]) -> int:
         """
         Time: O(n), where n is the length of nums
         Space: O(n)
@@ -47,22 +50,18 @@ class Solution:
             seen.add(num)
 
 
-# Approach: Negative Marking
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
+class BitwiseSolution:
+    @staticmethod
+    def find_duplicate(nums: list[int]) -> int:
         """
-        Time: O(n), where n is the length of num
-        Space: O(1)
+        Note, this solution only works in Python.
+
+        Time: O(n), where n is the length of nums
+        Space: O(n), since the integer used for storage can grow up to size of len(nums) - 1.
         """
+        seen = 0
+
         for num in nums:
-            cur = abs(num)
-            if nums[cur] < 0:
-                duplicate = cur
-                break
-            nums[cur] = -nums[cur]
-
-        # Restore numbers
-        for i in range(len(nums)):
-            nums[i] = abs(nums[i])
-
-        return duplicate
+            if seen & (1 << num) != 0:
+                return num
+            seen |= 1 << num
