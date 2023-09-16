@@ -1,17 +1,15 @@
-from typing import Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-# Iterative
-class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+class IterativeSolution:
+    @staticmethod
+    def reverse_list(head: ListNode | None) -> ListNode | None:
         """
-        Time: O(n), where n is the number of nodes in the input list
+        Let n = the length of the list
+        Time: O(n)
         Space: O(1)
         """
         prev = None
@@ -27,12 +25,12 @@ class Solution:
         return head
 
 
-# Recursive
-class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+class RecursiveSolution:
+    def reverse_list(self, head: ListNode | None) -> ListNode | None:
         """
-        Time: O(n), where n is the number of nodes in the input list
-        Space: O(n), where n is the number of nodes in the input list
+        Let n = the length of the list
+        Time: O(n)
+        Space: O(n)
         """
 
         # Base case: 0 or 1 node
@@ -40,7 +38,7 @@ class Solution:
             return head
 
         # Reverse the rest of the list, excluding the current node
-        reversed_list_head = self.reverseList(head.next)
+        reversed_list_head = self.reverse_list(head.next)
 
         # Add self as the head of the reversed list
         head.next.next = head
