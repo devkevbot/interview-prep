@@ -1,25 +1,19 @@
-from typing import List
-
-
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    @staticmethod
+    def max_profit(prices: list[int]) -> int:
         """
-        Time: O(n), where n is the length of prices
-        Space: O(1), no memory allocated grows with respect to input
+        Let n = the length of prices
+        Time: O(n)
+        Space: O(1)
         """
-        max_profit = 0
 
-        r = 0
-        l = 0
+        profit = 0
+        lowest = prices[0]
 
-        while r < len(prices):
-            profit = prices[r] - prices[l]
+        for price in prices[1:]:
+            if price < lowest:
+                lowest = price
+            elif price - lowest > profit:
+                profit = price - lowest
 
-            max_profit = max(max_profit, profit)
-
-            if profit < 0:
-                l = r
-
-            r += 1
-
-        return max_profit
+        return profit
