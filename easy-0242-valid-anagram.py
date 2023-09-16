@@ -1,24 +1,37 @@
-import collections
-
-
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
+class CountingSolution:
+    @staticmethod
+    def is_anagram(s: str, t: str) -> bool:
         """
-        Time: O(s + t) - In the worst case, all letters in s and t must be iterated through
-        Space: O(s) - The letter in s are always stored in a Counter
+        Let s = the length of s
+        Let t = the length of t
+        Time: O(s + t)
+        Space: O(1)
         """
-        if len(s) != len(t):
-            return False
 
-        letters_in_s = collections.Counter(s)
+        # O(26) space
+        chars = [0] * 26
 
-        for letter in t:
-            if letter not in letters_in_s:
+        # O(s) time
+        for char in s:
+            chars[ord(char) - ord("a")] += 1
+        # O(t) time
+        for char in t:
+            chars[ord(char) - ord("a")] -= 1
+
+        # O(26) time
+        for count in chars:
+            if count != 0:
                 return False
-
-            if letters_in_s[letter] == 0:
-                return False
-
-            letters_in_s[letter] -= 1
-
         return True
+
+
+class SortingSolution:
+    @staticmethod
+    def is_anagram(s: str, t: str) -> bool:
+        """
+        Let s = the length of s
+        Let t = the length of t
+        Time: O(s log s + t log t)
+        Space: O(1)
+        """
+        return sorted(s) == sorted(t)
