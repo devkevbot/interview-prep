@@ -1,4 +1,4 @@
-from typing import Optional
+import collections
 
 
 # Definition for a binary tree node.
@@ -9,32 +9,30 @@ class TreeNode:
         self.right = right
 
 
-# Recursive
-class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+class RecursiveSolution:
+    def invert_tree(self, root: TreeNode | None) -> TreeNode | None:
         """
-        Time: O(n), all n nodes of the tree are visited.
+        Let n = the number of nodes in the tree.
+        Time: O(n), all nodes of the tree are visited.
         Space: O(n), in the worst case, the tree is completely vertical
         """
-        if root is None:
+        if not root:
             return None
 
-        root.left, root.right = root.right, root.left
+        self.invert_tree(root.left)
+        self.invert_tree(root.right)
 
-        self.invertTree(root.left)
-        self.invertTree(root.right)
+        root.left, root.right = root.right, root.left
 
         return root
 
 
-import collections
-
-
-# Iterative
-class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+class IterativeSolution:
+    @staticmethod
+    def invert_tree(root: TreeNode | None) -> TreeNode | None:
         """
-        Time: O(n), all n nodes of the tree are visited.
+        Let n = the number of nodes in the tree.
+        Time: O(n), all nodes of the tree are visited.
         Space: O(n), at most n / 2 nodes are in the queue
         """
         queue = collections.deque([root])
