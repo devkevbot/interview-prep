@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -10,9 +7,10 @@ class ListNode:
 
 # Iterative
 class Solution:
-    def mergeTwoLists(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    @staticmethod
+    def merge_two_lists(
+        list1: ListNode | None, list2: ListNode | None
+    ) -> ListNode | None:
         """
         Time: O(n + m), where n is the length of list1 and m is the length of list 2
         Space: O(1)
