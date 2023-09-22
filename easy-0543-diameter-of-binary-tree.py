@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -9,28 +6,28 @@ class TreeNode:
         self.right = right
 
 
-# Recursive DFS solution
-class Solution:
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        self.max_diameter = 0
-        self.dfs(root)
-        return self.max_diameter
+class RecursiveSolution:
+    def __init__(self):
+        self.diameter = 0
 
-    def dfs(self, root: Optional[TreeNode]) -> int:
+    def diameter_of_binary_tree(self, root: TreeNode | None) -> int:
         """
-        Time: O(n) where n is the number of nodes in the tree
-        Space: O(h) where h is the height of the tree
+        Let n = the number of nodes in the tree
+        Let h = the height of the tree
+        Time: O(n)
+        Space: O(h)
         """
-        if root is None:
+
+        self.max_depth(root)
+        return self.diameter
+
+    def max_depth(self, root: TreeNode | None) -> int:
+        if not root:
             return 0
 
-        left_height = self.dfs(root.left)
-        right_height = self.dfs(root.right)
+        lst_depth = self.max_depth(root.left)
+        rst_depth = self.max_depth(root.right)
 
-        # Diameter is the sum of the height of the left and right subtrees
-        diameter = left_height + right_height
+        self.diameter = max(self.diameter, lst_depth + rst_depth)
 
-        # Update the maximum diameter
-        self.max_diameter = max(self.max_diameter, diameter)
-
-        return max(left_height, right_height) + 1
+        return 1 + max(lst_depth, rst_depth)
