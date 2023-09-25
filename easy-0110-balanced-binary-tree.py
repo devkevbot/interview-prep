@@ -9,9 +9,8 @@ class TreeNode:
         self.right = right
 
 
-# Two-pass solution
-class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+class TwoPassSolution:
+    def is_balanced(self, root: Optional[TreeNode]) -> bool:
         """
         Time: O(n^2), where n is the number of nodes in three
         Space: O(h), where h is the height of the tree
@@ -24,8 +23,8 @@ class Solution:
 
         return (
             abs(left_depth - right_depth) < 2
-            and self.isBalanced(root.left)
-            and self.isBalanced(root.right)
+            and self.is_balanced(root.left)
+            and self.is_balanced(root.right)
         )
 
     def depth(self, root: Optional[TreeNode]) -> bool:
@@ -35,9 +34,8 @@ class Solution:
         return 1 + max(self.depth(root.left), self.depth(root.right))
 
 
-# One-pass approach
-class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+class OnePassSolution:
+    def is_balanced(self, root: Optional[TreeNode]) -> bool:
         """
         Time: O(n), where n is the number of nodes in tree
         Space: O(h), where h is the height of the tree
