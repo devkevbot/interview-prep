@@ -9,11 +9,13 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+class RecursiveSolution:
+    def is_same_tree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         """
-        Time: O(n + m), where n is the number of nodes in p and m is the number of nodes in q
-        Space: O()
+        Let n = # nodes in p
+        Let m = # nodes in q
+        Time: O(min(n, m))
+        Space: O(min(n, m))
         """
         if not p and not q:
             return True
@@ -23,6 +25,6 @@ class Solution:
 
         return (
             p.val == q.val
-            and self.isSameTree(p.left, q.left)
-            and self.isSameTree(p.right, q.right)
+            and self.is_same_tree(p.left, q.left)
+            and self.is_same_tree(p.right, q.right)
         )
