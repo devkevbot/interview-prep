@@ -1,20 +1,17 @@
-from typing import List
+class RecursiveMemoDPSolution:
+    def __init__(self):
+        self.cache = {}
 
-
-# Recursive solution with memoization
-class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+    def min_cost_climbing_stairs(self, cost: list[int]) -> int:
         """
         Time: O(n), where n is the length of the cost array
         Space: O(n)
         """
-        self.cache = {}
 
         n = len(cost)
+        return min(self.find_lowest_cost(cost, n - 1), self.find_lowest_cost(cost, n - 2))
 
-        return min(self.findLowestCost(cost, n - 1), self.findLowestCost(cost, n - 2))
-
-    def findLowestCost(self, cost, n) -> int:
+    def find_lowest_cost(self, cost: list[int], n: int) -> int:
         if n < 2:
             return cost[n]
 
@@ -22,15 +19,15 @@ class Solution:
             return self.cache[n]
 
         self.cache[n] = cost[n] + min(
-            self.findLowestCost(cost, n - 1), self.findLowestCost(cost, n - 2)
+            self.find_lowest_cost(cost, n - 1), self.find_lowest_cost(cost, n - 2)
         )
 
         return self.cache[n]
 
 
-# Bottom-up DP with linear space
-class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+class BottomUpDpUnoptimizedSolution:
+    @staticmethod
+    def min_cost_climbing_stairs(cost: list[int]) -> int:
         """
         Time: O(n), where n is the length of the cost array
         Space: O(n)
@@ -48,9 +45,9 @@ class Solution:
         return min(cache[n - 1], cache[n - 2])
 
 
-# Bottom-up DP with constant space
-class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+class BottUpDpOptimizedSolution:
+    @staticmethod
+    def min_cost_climbing_stairs(cost: list[int]) -> int:
         """
         Time: O(n), where n is the length of the cost array
         Space: O(1)
