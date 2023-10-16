@@ -20,11 +20,11 @@ class Solution:
         # Using that approach, space complexity can be reduced.
         seen = set()
 
-        def is_unvisited_land(row, col):
+        def is_unvisited_land(row: int, col: int) -> bool:
             row_ok = row >= 0 and row < rows
             col_ok = col >= 0 and col < cols
             return (
-                row_ok and col_ok and (row, col) not in seen and grid[row][col] == "1"
+                    row_ok and col_ok and (row, col) not in seen and grid[row][col] == "1"
             )
 
         directions = [[-1, 0], [1, 0], [0, 1], [0, -1]]
