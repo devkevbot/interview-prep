@@ -5,7 +5,8 @@ class SortSolution:
     @staticmethod
     def find_kth_largest(nums: list[int], k: int) -> int:
         """
-        Time: O(nlogn), where n is length of nums
+        Let n = the length of nums
+        Time: O(n log n)
         Space: O(1), sorting is done in-place
         """
 
@@ -17,8 +18,10 @@ class HeapSolution:
     @staticmethod
     def find_kth_largest(nums: list[int], k: int) -> int:
         """
-        Time: O(nlogk), where n is the length of nums
-        Space: O(k), the heap uses O(k) space
+        Let n = the length of nums
+        Let k = the input k
+        Time: O(n log k)
+        Space: O(k)
         """
 
         heap = []
