@@ -1,5 +1,4 @@
-import collections
-from typing import Optional, List
+from collections import deque
 
 
 class TreeNode:
@@ -11,31 +10,28 @@ class TreeNode:
 
 class LevelOrderTraversalSolution:
     @staticmethod
-    def right_side_view(root: Optional[TreeNode]) -> List[int]:
+    def right_side_view(root: TreeNode | None) -> list[int]:
         """
         Perform a level-order traversal while capturing the last element in the queue for each level of the tree.
 
-        Time: O(n), where n is the number of nodes in the tree
+        Let n = the number of nodes in the tree
+        Time: O(n)
         Space: O(n)
         """
 
+        if not root:
+            return []
+
+        q = deque([root])
         res = []
-        queue = collections.deque([root])
 
-        while queue:
-            right_most = queue[-1]
-            if right_most:
-                res.append(right_most.val)
-
-            num_elements = len(queue)
-            while num_elements > 0:
-                element = queue.popleft()
-                num_elements -= 1
-                if element:
-                    # Only add non-null nodes into the discovery queue
-                    if element.left:
-                        queue.append(element.left)
-                    if element.right:
-                        queue.append(element.right)
-
+        while q:
+            if q:
+                res.append(q[-1].val)
+            for _ in range(len(q)):
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
         return res
