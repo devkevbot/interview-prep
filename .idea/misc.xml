@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
+    <option name="enabledOnReformat" value="true" />
     <option name="enabledOnSave" value="true" />
-    <option name="sdkUUID" value="bf816bb0-dd0e-477f-9978-f7da6b53947a" />
+    <option name="sdkName" value="Python 3.12 (leetcode)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (leetcode)" project-jdk-type="Python SDK" />
 </project>
