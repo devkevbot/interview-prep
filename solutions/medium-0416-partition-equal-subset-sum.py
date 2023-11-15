@@ -2,7 +2,7 @@ class Solution:
     def can_partition(self, nums: list[int]) -> bool:
         """
         Let n = the number of elements in nums
-        Time: O(n^2)
+        Time: O(n * 2^n)
         Space: O(2^n)
         """
 
