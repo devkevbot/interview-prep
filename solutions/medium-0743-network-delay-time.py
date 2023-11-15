@@ -6,8 +6,8 @@ class Solution:
         """
         Let V = the number of vertices
         Let E = the number of edges, equivalent to V * V
-        Time: O(E * log E), same as O(E * log V)
-        Space: O(E)
+        Time: O((V + E) * logV)
+        Space: O(V + E)
         """
 
         adj = {}
