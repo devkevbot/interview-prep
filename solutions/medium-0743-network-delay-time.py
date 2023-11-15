@@ -3,13 +3,6 @@ import heapq
 
 class Solution:
     def network_delay_time(self, times: list[list[int]], n: int, k: int) -> int:
-        """
-        Let V = the number of vertices
-        Let E = the number of edges, equivalent to V * V
-        Time: O((V + E) * logV)
-        Space: O(V + E)
-        """
-
         adj = {}
         for i in range(1, n + 1):
             adj[i] = []
