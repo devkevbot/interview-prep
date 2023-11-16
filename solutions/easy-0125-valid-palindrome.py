@@ -1,5 +1,5 @@
-class Solution:
-    def isPalindrome(self, s: str) -> bool:
+class TwoPointerSolution:
+    def is_palindrome(self, s: str) -> bool:
         """
         Time: O(n), where n is the length of s. In the worst case, all characters mut be checked.
         Space: O(1). no additional memory is allocated.
@@ -23,8 +23,8 @@ class Solution:
         return True
 
 
-class Solution:
-    def isPalindrome(self, s: str) -> bool:
+class StringManipulationSolution:
+    def is_palindrome(self, s: str) -> bool:
         """
         Time: O(n), where n is the length of s. All characters are checked
         Space: O(n), where n is length of s. A new copy of the input string is created.
