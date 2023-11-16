@@ -5,6 +5,12 @@ import heapq
 # with nodes numbered from 1 to n,
 # return a list edges making up the minimum spanning tree.
 def minimum_spanning_tree(edges, n):
+    """
+    Let V = the number of vertices
+    Let E = the number of edges
+    Time: O(E log V)
+    Space: O(V + E)
+    """
     adj = {}
     for i in range(1, n + 1):
         adj[i] = []

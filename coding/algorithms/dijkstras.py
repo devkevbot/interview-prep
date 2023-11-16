@@ -7,6 +7,12 @@ import heapq
 #
 # Only works with non-negative edge weights.
 def find_shortest_path(edges, n, src):
+    """
+    Let V = the number of vertices
+    Let E = the number of edges
+    Time: O(E log V)
+    Space: O(V + E)
+    """
     adj = {}
     for i in range(1, n + 1):
         adj[i] = []
