@@ -3,13 +3,11 @@ class BottomUpDynamicProgrammingSolution:
     def coin_change(coins: list[int], amount: int) -> int:
         """
         Let A = the amount to make change for
-
         Let C = the number of coins
-
         Time: O(C * A) since there are A iterations which perform C work.
-
         Space: O(A) since the DP cache holds A values.
         """
+
         # The ith index of this array is the number of coins to make an amount of i.
         #
         # The array can be filled with any arbitrarily large value, not just amount + 1, as long
