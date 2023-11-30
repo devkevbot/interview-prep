@@ -6,14 +6,16 @@ class MemoizedDPSolution:
         Time: O(n)
         Space: O(1)
         """
-        cache = [1, 2]
-
+        if n < 0:
+            return 0
         if n <= 1:
-            return cache[0]
-        if n == 2:
-            return cache[1]
+            return 1
 
-        for _ in range(3, n + 1):
+        # Initialized to way to make 0 steps and 1 step, respectively
+        cache = [1, 1]
+
+        # Find the ways to climb n steps
+        for _ in range(2, n + 1):
             cache[0], cache[1] = cache[1], cache[0] + cache[1]
 
         return cache[1]
