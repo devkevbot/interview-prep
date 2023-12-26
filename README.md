@@ -1,6 +1,6 @@
 # interview-prep
 
-A repository consiting of prep material for software development interviews.
+A repository consisting of prep material for software development interviews.
 
 Contents include:
 - Leetcode problems (DS&A, SQL, and more)
