@@ -1,25 +1,27 @@
 class BruteForceSolution:
-    @staticmethod
-    def max_area(height: list[int]) -> int:
+    def area(self, left: int, right: int, height: list[int]) -> int:
+        return (right - left) * min(height[left], height[right])
+
+    def max_area(self, height: list[int]) -> int:
         """
         Let n = length of height input
         Time: O(n^2)
         Space: O(1)
         """
 
-        def area(left, right):
-            return (right - left) * min(height[left], height[right])
-
-        answer = 0
+        max_area = 0
 
         for left in range(len(height)):
             for right in range(left, len(height)):
-                answer = max(answer, area(left, right))
+                max_area = max(max_area, self.area(left, right, height))
 
-        return answer
+        return max_area
 
 
 class TwoPointerSolution:
+    def area(self, left: int, right: int, height: list[int]) -> int:
+        return (right - left) * min(height[left], height[right])
+
     def max_area(self, height: list[int]) -> int:
         """
         Let n = length of height input
@@ -27,22 +29,14 @@ class TwoPointerSolution:
         Space: O(1)
         """
 
-        def area(left, right):
-            return (right - left) * min(height[left], height[right])
+        max_area = 0
 
-        answer = 0
         left = 0
         right = len(height) - 1
 
         while left < right:
-            answer = max(answer, area(left, right))
-
+            max_area = max(max_area, self.area(left, right, height))
             """
-            The area of the rectangle is comprised of the height and width.
-            
-            The height used in the area calculation is the minimum of the heights of the
-            left and right edge.
-            
             Since we start with a maximum width, we know that for a given height, shrinking
             the width won't yield a greater area. This fact means we should try to find another
             height.
@@ -54,4 +48,4 @@ class TwoPointerSolution:
             else:
                 right -= 1
 
-        return answer
+        return max_area
