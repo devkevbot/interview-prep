@@ -1,17 +1,14 @@
 class Solution:
-    @staticmethod
-    def search_matrix(matrix: list[list[int]], target: int) -> bool:
+    def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
         """
-        Let n = the number of rows
-        Let m = the number of cols
-
-        Time: O(log(n * m))
+        Let m = the number of rows in the input `matrix`
+        Let n = the number of columns in the input `matrix`
+        Time: O(log(n * m)) = O(log n + log m)
         Space: O(1)
         """
-
         top = 0
         bottom = len(matrix) - 1
-        mid = -1
+        mid = None
 
         while top <= bottom:
             mid = top + (bottom - top) // 2
@@ -25,16 +22,15 @@ class Solution:
         if top > bottom:
             return False
 
-        row = matrix[mid]
-
+        row = mid
         left = 0
-        right = len(row) - 1
+        right = len(matrix[row]) - 1
 
         while left <= right:
             mid = left + (right - left) // 2
-            if row[mid] == target:
+            if matrix[row][mid] == target:
                 return True
-            if target < row[mid]:
+            if target < matrix[row][mid]:
                 right = mid - 1
             else:
                 left = mid + 1
