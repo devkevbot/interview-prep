@@ -1,4 +1,4 @@
-import collections
+from collections import defaultdict
 
 
 class TimeMap:
@@ -8,7 +8,7 @@ class TimeMap:
         Space: O(1)
         """
 
-        self.data = collections.defaultdict(list)
+        self.data = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
         """
@@ -17,7 +17,7 @@ class TimeMap:
         Space: O(k)
         """
 
-        self.data[key].append((value, timestamp))
+        self.data[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
         """
@@ -29,30 +29,22 @@ class TimeMap:
         if key not in self.data:
             return ""
 
-        values = self.data[key]
-
         left = 0
-        right = len(values) - 1
+        right = len(self.data[key]) - 1
 
         candidate = ""
 
         while left <= right:
             mid = left + (right - left) // 2
 
-            value_prev, timestamp_prev = values[mid]
+            timestamp_prev, value = self.data[key][mid]
             if timestamp_prev == timestamp:
-                return value_prev
+                return value
 
             if timestamp_prev < timestamp:
-                candidate = value_prev
+                candidate = value
                 left = mid + 1
             else:
                 right = mid - 1
 
         return candidate
-
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
