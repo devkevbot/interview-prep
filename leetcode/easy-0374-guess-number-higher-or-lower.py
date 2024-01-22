@@ -14,11 +14,15 @@ class Solution:
         Time: O(log n)
         Space: O(1)
         """
-        low, high = 1, n
-        while low < high:
+        low = 1
+        high = n
+
+        while low <= high:
             mid = low + (high - low) // 2
-            if guess(mid) == 1:
-                low = mid + 1
+            result = guess(mid)
+            if result == 0:
+                return mid
+            if result == -1:
+                high = mid - 1
             else:
-                high = mid
-        return low
+                low = mid + 1
