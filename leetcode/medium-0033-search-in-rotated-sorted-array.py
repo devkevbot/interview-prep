@@ -1,6 +1,5 @@
 class Solution:
-    @staticmethod
-    def search(nums: list[int], target: int) -> int:
+    def search(self, nums: list[int], target: int) -> int:
         """
         Time: O(log n) where n is the length of nums
         Space: O(1)
