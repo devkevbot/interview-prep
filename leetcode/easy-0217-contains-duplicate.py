@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
+    def containsDuplicate(self, nums: list[int]) -> bool:
         """
         Time: O(n) - In the worst case (no duplicates), must iterate through all elements
-        Space: O(n) - In the worst case (no duplicates), must iterate (and store) all elements in a set
+        Space: O(n) - In the worst case (no duplicates), must iterate (and store) all elements
         """
         seen = set()
         for num in nums:
