@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
         """
         Time: O(n^2) - Given n input elements, each outer iteration of the list requires a full inner iteration. (n outer loops * n work per loop)
         Space: O(1) - No additional memory is allocated.
@@ -14,7 +11,7 @@ class Solution:
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
         """
         Time: O(n) - Given n input elements, in the worst case, all n elements are iterated.
         Space: O(n) - Given n input elements, in the worst case, all n elements are stored in the hashmap.
