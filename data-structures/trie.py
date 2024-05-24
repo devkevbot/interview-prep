@@ -1,52 +1,138 @@
-class Node:
-    def __init__(self):
-        """
-        If the character set is limited to only lowercase English alphabet.
-        then the space of each node is O(26) => O(1)
-        """
+"""
+Trie implementation
+
+In this implementation, the alphabet of the tree is restricted to lowercase
+English letters a-z.
+
+Space: O(alphabet size * average word size * number of words)
+"""
+
+
+class TrieNode:
+    def __init__(self) -> None:
         self.children = {}
-        self.terminal = False
+        self.word = False
 
 
 class Trie:
-    def __init__(self):
-        self.root = Node()
+    def __init__(self) -> None:
+        self.root = TrieNode()
 
     def insert_word(self, word: str) -> None:
         """
-        Let n = the length of the word
-        Time: O(n)
-        Space: O(n) if the word doesn't exist, else O(1)
-        """
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = Node()
-            curr = curr.children[char]
-        curr.terminal = True
+        Time:
+        - O(m), where m is the key length.
+        - In each iteration of the algorithm, we either examine or create a node
+        in the trie till we reach the end of the key. This takes only mmm
+        operations.
 
-    def contains_word(self, word: str) -> bool:
-        """
-        Let n = the length of the word
-        Time: O(n)
-        Space: O(1)
+        Space:
+        - O(m)
+        - In the worst case newly inserted key doesn't share a prefix with the
+        the keys already inserted in the trie. We have to add mmm new nodes,
+        which takes us O(m) space.
+
+        Algorithm:
+        - Start at the root of the Trie
+        - For each letter in the word
+            - Create a TrieNode if the letter doesn't exist in the current node's children
+            - Visited the node that was just inserted
+        - Mark the last inserted node as a word
         """
         curr = self.root
-        for char in word:
-            if char not in curr.children:
+        for letter in word:
+            if letter not in curr.children:
+                curr.children[letter] = TrieNode()
+            curr = curr.children[letter]
+        curr.word = True
+
+    def search_word(self, word: str) -> bool:
+        """
+        Time:
+            - O(m)
+            - In each step of the algorithm we search for the next key
+              character. In the worst case the algorithm performs m operations.
+        Space:
+            - O(1)
+
+        Algorithm:
+        - Start at the root of the Trie
+        - For each letter in the word
+            - If the letter is not in current node's children, return false
+            - Visited the node belonging to the letter
+        - Return if the last found node is a word
+        """
+        curr = self.root
+        for letter in word:
+            if letter not in curr.children:
                 return False
-            curr = curr.children[char]
-        return curr.terminal
+            curr = curr.children[letter]
+        return curr.word
+
+    def search_prefix(self, prefix: str) -> bool:
+        """
+        Time:
+            - O(m)
+            - In each step of the algorithm we search for the next key
+              character. In the worst case the algorithm performs m operations.
+        Space:
+            - O(1)
+
+        Algorithm:
+        - Start at the root of the Trie
+        - For each letter in the word
+            - If the letter is not in current node's children, return false
+            - Visited the node belonging to the letter
+        - Return true
+        """
+        curr = self.root
+        for letter in prefix:
+            if letter not in curr.children:
+                return False
+            curr = curr.children[letter]
+        return True
+
+    def remove_word(self, word: str):
+        """
+        Time: O(k) where k is the size of the word being removed
+
+        Algorithm:
+        - Start at the root of the Trie
+        - For each letter in the word
+            - If the letter is not in current node's children, return
+            - Visited the node belonging to the letter
+        - If the last node is a word, mark it as a non-word
+        - If the last node has no children, set the last node to None
+        """
+        curr = self.root
+        for letter in word:
+            if letter not in curr.children:
+                return
+            curr = curr.children[letter]
+
+        if curr.word:
+            curr.word = False
+
+        if len(curr.children) == 0:
+            curr = None
 
 
 if __name__ == "__main__":
     t = Trie()
 
-    t.insert_word("dog")
-    t.insert_word("apple")
-    t.insert_word("app")
+    t.insert_word("foobar")
+    assert t.search_word("foobar"), "expected to find the word 'foobar'"
+    assert t.search_prefix("foo"), "expected to find the prefix 'foo'"
 
-    assert t.contains_word("dog"), "expected dog"
-    assert t.contains_word("app"), "expected app"
-    assert t.contains_word("apple"), "expected apple"
-    assert not t.contains_word("appl"), "did not expected appl"
+    t.insert_word("cat")
+    assert t.search_word("cat"), "expected to find the word 'cat'"
+    t.insert_word("car")
+    assert t.search_word("car"), "expected to find the word 'car'"
+
+    t.remove_word("ca")
+    assert t.search_word("cat"), "expected to find the word 'cat'"
+    assert t.search_word("car"), "expected to find the word 'car'"
+
+    t.remove_word("cat")
+    assert not t.search_word("cat"), "expected to not find the word 'cat'"
+    assert t.search_word("car"), "expected to find the word 'car'"

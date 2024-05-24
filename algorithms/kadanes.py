@@ -1,6 +1,13 @@
-def kadanes_max_sum(nums: list[int]):
+"""
+Kadane's Algorithm Implementations
+"""
+
+from typing import List
+
+
+def kadanes_max_sum(nums: List[int]):
     """
-    Kadane's implementation that finds the maximum sum of a subarray and returns
+    Kadanes implementation that finds the maximum sum of a subarray and returns
     the sum itself.
 
     Time Complexity: O(n)
@@ -16,9 +23,9 @@ def kadanes_max_sum(nums: list[int]):
     return max_sum
 
 
-def kadanes_min_sum(nums: list[int]):
+def kadanes_min_sum(nums: List[int]):
     """
-    Kadane's implementation that finds the minimum sum of a subarray and returns
+    Kadanes implementation that finds the minimum sum of a subarray and returns
     the sum itself.
 
     Time Complexity: O(n)
@@ -34,9 +41,9 @@ def kadanes_min_sum(nums: list[int]):
     return min_sum
 
 
-def kadanes_max_sum_sliding_window(nums: list[int]):
+def kadanes_max_sum_sliding_window(nums: List[int]):
     """
-    Kadane's implementation that finds the maximum sum of a subarray and returns
+    Kadanes implementation that finds the maximum sum of a subarray and returns
     the start and end indices of the subarray.
 
     Time Complexity: O(n)
@@ -64,9 +71,9 @@ def kadanes_max_sum_sliding_window(nums: list[int]):
     return [max_left, max_right]
 
 
-def kadanes_min_sum_sliding_window(nums: list[int]):
+def kadanes_min_sum_sliding_window(nums: List[int]):
     """
-    Kadane's implementation that finds the minimum sum of a subarray and returns
+    Kadanes implementation that finds the minimum sum of a subarray and returns
     the start and end indices of the subarray.
 
     Time Complexity: O(n)
