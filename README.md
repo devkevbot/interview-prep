@@ -1,6 +1,6 @@
 # interview-prep
 
-A repository consisting of prep material for software development interviews.
+A repository consisting of prep material I've used for software development interviews.
 
 Contents include:
 
