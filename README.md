@@ -4,6 +4,6 @@ A repository consisting of prep material I've used for software development inte
 
 Contents include:
 
-- LeetCode problems (DS&A, SQL, and more)
-- Coding design patterns (e.g., builder, adapter, etc.)
-- Reference implementations of common data structures & algorithms.
+- LeetCode problems
+- Coding design patterns
+- Reference implementations of common data structures & algorithms
